@@ -1,0 +1,24 @@
+{
+  "name": "gb-typescript",
+  "version": "1.0.0",
+  "description": "typescript",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc src/index.ts --outDir dist --target es2015",
+    "start": "node dist/."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Feikkont/GB-TypeScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Feikkont/GB-TypeScript/issues"
+  },
+  "homepage": "https://github.com/Feikkont/GB-TypeScript#readme",
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  }
+}
