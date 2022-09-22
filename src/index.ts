@@ -23,7 +23,23 @@ const books: Book[] = [ //можно записать типизацию Array<B
 //     })
 // }
 
-function findSuitableBook(genre: string, pagesLimit: number, multipleRecommendations = true): Book | Book[] | string {
+// function findSuitableBook(genre: string, pagesLimit: number, multipleRecommendations = true): Book | Book[] | string {
+//     const findAlgorithm = (book: Book) => {
+//         return book.genre === genre && book.pageAmount <= pagesLimit
+//     }
+//     if (multipleRecommendations) {
+//         return books.filter(findAlgorithm);
+//     } else {
+//         return books.find(findAlgorithm) ? books.find(findAlgorithm) : 'Книга не найдена' // если книга есть, то ее возвращают
+//             // если нет то возвращает строку
+//     }
+// }
+
+function findSuitableBook(
+    genre: string,
+    pagesLimit: number,
+    multipleRecommendations = true
+): Book | Book[] | undefined {
     const findAlgorithm = (book: Book) => {
         return book.genre === genre && book.pageAmount <= pagesLimit
     }
@@ -34,6 +50,13 @@ function findSuitableBook(genre: string, pagesLimit: number, multipleRecommendat
             // если нет то возвращает строку
     }
 }
+
+const recommendedBook = findSuitableBook('fantasy', 1000);
+
+if (recommendedBook instanceof Book) {
+    console.log(recommendedBook.name)
+}
+
 
 console.log(findSuitableBook('fantasy', 1000, false));
 console.log(findSuitableBook('fantasy', 1000));
