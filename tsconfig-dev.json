@@ -1,0 +1,11 @@
+{
+  //наследуем все настройки от тсконфик
+  "extends": "./tsconfig.json",
+  //опции для компиляции
+  "compilerOptions": {
+    //Watch для слежения за проектом
+    "watch": true,
+    "inlineSourceMap": true,
+    "inlineSources": true
+  }
+}

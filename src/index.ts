@@ -1,9 +1,24 @@
+type GenreType = { type: string, value: string };
+
+interface iBook {
+    name: string;
+    genre: GenreType;
+    pageAmount: number;
+}
+
+//
+// type BookType = {
+//     name: string;
+//     genre: string;
+//     pageAmount: number;
+// }
+
 class Book {
     name = '';
-    genre = '';
+    genre = null;
     pageAmount = 0;
 
-    constructor(name: string, genre: string, pageAmount: number) {
+    constructor({name, genre, pageAmount}: iBook) {
         this.name = name;
         this.genre = genre;
         this.pageAmount = pageAmount;
@@ -11,10 +26,14 @@ class Book {
 }
 
 const books: Book[] = [ //можно записать типизацию Array<Book>
-    new Book('Harry Potter', 'fantasy', 980),
-    new Book('lord of the Ring', 'fantasy', 1001),
-    new Book('How to be productive', 'lifestyle', 500),
-    new Book('Game of Thrones', 'fantasy', 999)
+    new Book({
+        name: 'Harry Potter',
+        genre: {value: 'fantasy', type: 'new'},
+        pageAmount: 980
+    }),
+    // new Book('lord of the Ring', 'fantasy', 1001),
+    // new Book('How to be productive', 'lifestyle', 500),
+    // new Book('Game of Thrones', 'fantasy', 999)
 ]
 
 // function findSuitableBook(genre: string, pagesLimit: number): Book | undefined {
@@ -36,18 +55,18 @@ const books: Book[] = [ //можно записать типизацию Array<B
 // }
 
 function findSuitableBook(
-    genre: string,
+    genreValue: string,
     pagesLimit: number,
     multipleRecommendations = true
 ): Book | Book[] | undefined {
-    const findAlgorithm = (book: Book) => {
-        return book.genre === genre && book.pageAmount <= pagesLimit
+    const findAlgorithm = (book: iBook) => {
+        return book.genre.value === genreValue && book.pageAmount <= pagesLimit
     }
     if (multipleRecommendations) {
         return books.filter(findAlgorithm);
     } else {
-        return books.find(findAlgorithm) ? books.find(findAlgorithm) : 'Книга не найдена' // если книга есть, то ее возвращают
-            // если нет то возвращает строку
+        return books.find(findAlgorithm);
+        // если нет то возвращает строку
     }
 }
 
@@ -58,11 +77,5 @@ if (recommendedBook instanceof Book) {
 }
 
 
-console.log(findSuitableBook('fantasy', 1000, false));
 console.log(findSuitableBook('fantasy', 1000));
-
-// console.log(findSuitableBook('fantasy', "1000"));
-// console.log(findSuitableBook('fantasy'));
-// console.log(findSuitableBook(1000, 'fantasy'));
-// console.log(findSuitableBook(1000 ));
-// console.log(findSuitableBook( ));
+console.log(findSuitableBook('fantasy', 1000));

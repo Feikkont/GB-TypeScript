@@ -1,19 +1,28 @@
-var Book = /** @class */ (function () {
-    function Book(name, genre, pageAmount) {
+//
+// type BookType = {
+//     name: string;
+//     genre: string;
+//     pageAmount: number;
+// }
+class Book {
+    constructor({ name, genre, pageAmount }) {
         this.name = '';
-        this.genre = '';
+        this.genre = null;
         this.pageAmount = 0;
         this.name = name;
         this.genre = genre;
         this.pageAmount = pageAmount;
     }
-    return Book;
-}());
-var books = [
-    new Book('Harry Potter', 'fantasy', 980),
-    new Book('lord of the Ring', 'fantasy', 1001),
-    new Book('How to be productive', 'lifestyle', 500),
-    new Book('Game of Thrones', 'fantasy', 999)
+}
+const books = [
+    new Book({
+        name: 'Harry Potter',
+        genre: { value: 'fantasy', type: 'new' },
+        pageAmount: 980
+    }),
+    // new Book('lord of the Ring', 'fantasy', 1001),
+    // new Book('How to be productive', 'lifestyle', 500),
+    // new Book('Game of Thrones', 'fantasy', 999)
 ];
 // function findSuitableBook(genre: string, pagesLimit: number): Book | undefined {
 //     return books.find((book) => {
@@ -31,27 +40,21 @@ var books = [
 //             // если нет то возвращает строку
 //     }
 // }
-function findSuitableBook(genre, pagesLimit, multipleRecommendations) {
-    if (multipleRecommendations === void 0) { multipleRecommendations = true; }
-    var findAlgorithm = function (book) {
-        return book.genre === genre && book.pageAmount <= pagesLimit;
+function findSuitableBook(genreValue, pagesLimit, multipleRecommendations = true) {
+    const findAlgorithm = (book) => {
+        return book.genre.value === genreValue && book.pageAmount <= pagesLimit;
     };
     if (multipleRecommendations) {
         return books.filter(findAlgorithm);
     }
     else {
-        return books.find(findAlgorithm) ? books.find(findAlgorithm) : 'Книга не найдена'; // если книга есть, то ее возвращают
+        return books.find(findAlgorithm);
         // если нет то возвращает строку
     }
 }
-var recommendedBook = findSuitableBook('fantasy', 1000);
+const recommendedBook = findSuitableBook('fantasy', 1000);
 if (recommendedBook instanceof Book) {
     console.log(recommendedBook.name);
 }
-console.log(findSuitableBook('fantasy', 1000, false));
 console.log(findSuitableBook('fantasy', 1000));
-// console.log(findSuitableBook('fantasy', "1000"));
-// console.log(findSuitableBook('fantasy'));
-// console.log(findSuitableBook(1000, 'fantasy'));
-// console.log(findSuitableBook(1000 ));
-// console.log(findSuitableBook( ));
+console.log(findSuitableBook('fantasy', 1000));
