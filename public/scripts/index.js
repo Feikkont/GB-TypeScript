@@ -5,20 +5,20 @@
 //     pageAmount: number;
 // }
 class Book {
-    constructor({ name, genre, pageAmount }) {
+    constructor({ name, genre, price }) {
         this.name = '';
         this.genre = null;
-        this.pageAmount = 0;
+        this.price = 0;
         this.name = name;
         this.genre = genre;
-        this.pageAmount = pageAmount;
+        this.price = price;
     }
 }
 const books = [
     new Book({
         name: 'Harry Potter',
         genre: { value: 'fantasy', type: 'new' },
-        pageAmount: 980
+        price: 980
     }),
     // new Book('lord of the Ring', 'fantasy', 1001),
     // new Book('How to be productive', 'lifestyle', 500),
@@ -42,7 +42,7 @@ const books = [
 // }
 function findSuitableBook(genreValue, pagesLimit, multipleRecommendations = true) {
     const findAlgorithm = (book) => {
-        return book.genre.value === genreValue && book.pageAmount <= pagesLimit;
+        return book.genre.value === genreValue && book.price <= pagesLimit;
     };
     if (multipleRecommendations) {
         return books.filter(findAlgorithm);
@@ -58,3 +58,30 @@ if (recommendedBook instanceof Book) {
 }
 console.log(findSuitableBook('fantasy', 1000));
 console.log(findSuitableBook('fantasy', 1000));
+// const name = 'Vasya';
+//
+// console.log(`Hello ${name}`)
+// typeof undefined // "undefined"
+// typeof 0 // "number"
+// typeof 10n // "bigint"
+// typeof true // "boolean"
+// typeof 'foo' // "string"
+// typeof Symbol('id') // "symbol"
+// typeof {} // "object"
+// typeof null // "object" *
+// typeof alert // "function" *
+//
+// let a: undefined
+// let b: null
+// let c: boolean
+// let d: number
+// let e: bigint
+// let f: string
+// let j: symbol
+// const name: string = 'Vasya';
+const book = new Book({
+    name: 'Harry Potter1',
+    genre: { value: 'fantasy', type: 'new' },
+    price: 980
+});
+console.log(book.genre.toUpperCase(), book.price.toFixed(2));

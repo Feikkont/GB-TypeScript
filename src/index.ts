@@ -3,7 +3,7 @@ type GenreType = { type: string, value: string };
 interface iBook {
     name: string;
     genre: GenreType;
-    pageAmount: number;
+    price: number;
 }
 
 //
@@ -16,12 +16,12 @@ interface iBook {
 class Book {
     name = '';
     genre = null;
-    pageAmount = 0;
+    price = 0;
 
-    constructor({name, genre, pageAmount}: iBook) {
+    constructor({name, genre, price}: iBook) {
         this.name = name;
         this.genre = genre;
-        this.pageAmount = pageAmount;
+        this.price = price;
     }
 }
 
@@ -29,7 +29,7 @@ const books: Book[] = [ //можно записать типизацию Array<B
     new Book({
         name: 'Harry Potter',
         genre: {value: 'fantasy', type: 'new'},
-        pageAmount: 980
+        price: 980
     }),
     // new Book('lord of the Ring', 'fantasy', 1001),
     // new Book('How to be productive', 'lifestyle', 500),
@@ -60,7 +60,7 @@ function findSuitableBook(
     multipleRecommendations = true
 ): Book | Book[] | undefined {
     const findAlgorithm = (book: iBook) => {
-        return book.genre.value === genreValue && book.pageAmount <= pagesLimit
+        return book.genre.value === genreValue && book.price <= pagesLimit
     }
     if (multipleRecommendations) {
         return books.filter(findAlgorithm);
@@ -79,3 +79,26 @@ if (recommendedBook instanceof Book) {
 
 console.log(findSuitableBook('fantasy', 1000));
 console.log(findSuitableBook('fantasy', 1000));
+
+// const name = 'Vasya';
+//
+// console.log(`Hello ${name}`)
+
+// typeof undefined // "undefined"
+// typeof 0 // "number"
+// typeof 10n // "bigint"
+// typeof true // "boolean"
+// typeof 'foo' // "string"
+// typeof Symbol('id') // "symbol"
+// typeof {} // "object"
+// typeof null // "object" *
+// typeof alert // "function" *
+//
+// let a: undefined
+// let b: null
+// let c: boolean
+// let d: number
+// let e: bigint
+// let f: string
+// let j: symbol
+
