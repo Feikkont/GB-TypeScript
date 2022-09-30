@@ -16,3 +16,38 @@ export class Product {
         return `price is ${this.price}`;
     }
 }
+function addToShelf(book, shelfName) {
+    if (shelfName == null) {
+        shelfName = 'favorite';
+    }
+    // здесь логика добавления книги на полку
+}
+addToShelf(book, 'the-best');
+addToShelf(book);
+const a = {
+    book: book,
+    add: addToShelf
+};
+function buyRequest(book) {
+    // логика покупки
+    const transactionId = Math.random().toString();
+    return Promise.resolve(transactionId);
+}
+function buy(book, callback) {
+    buyRequest(book)
+        .then((id) => {
+        callback(null, id);
+    })
+        .catch((error) => {
+        callback(error);
+    });
+}
+// попробуем купить книгу
+buy(book, (error, transactionId) => {
+    if (error == null && transactionId != null) {
+        console.log('Success!');
+    }
+    else {
+        console.error('Fail', error);
+    }
+});

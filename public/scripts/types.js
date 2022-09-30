@@ -11,18 +11,19 @@ const newDay = 'Mo';
 //     Horror = 109
 // }
 // const horror = Genre.Horror
-export var Status;
-(function (Status) {
-    Status[Status["loading"] = 0] = "loading";
-    Status[Status["success"] = 1] = "success";
-    Status[Status["error"] = 2] = "error";
-})(Status || (Status = {}));
-export function getGenreName(props) {
-    const genreMapping = {
-        [Status.loading]: () => '<div>loading...</div>',
-        [Status.success]: () => '<div>success</div>',
-        [Status.error]: () => '<div>error</div>'
-    };
-    return genreMapping[status];
-}
-getGenreName({ status: Status.loading, data: ['hello'] });
+// export enum Status {
+//     loading,
+//     success,
+//     error
+// }
+//
+// export function getGenreName(props: {status: Status, data: string[]}) {
+//     const genreMapping = {
+//         [Status.loading]: () =>'<div>loading...</div>',
+//         [Status.success]: (data) => `<div>success ${data[0]}</div>`,
+//         [Status.error]: () => '<div>error</div>'
+//     }
+//     return genreMapping[props.status](props.data)
+// }
+//
+// getGenreName({status: Status.loading, data:['hello']})
