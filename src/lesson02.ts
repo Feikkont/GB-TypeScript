@@ -57,13 +57,14 @@ const a = {
 
 //-------------------
 
+type Callback = (error?: Error | null, transactionId?: string) => void;
+
 function buyRequest(book: Book) {
 // логика покупки
     const transactionId = Math.random().toString()
     return Promise.resolve(transactionId)
 }
-function buy(book: Book, callback: (error?: Error, transactionId?: string) =>
-    void): void {
+function buy(book: Book, callback: Callback): void {
     buyRequest(book)
         .then((id) => {
             callback(null, id)
@@ -72,14 +73,16 @@ function buy(book: Book, callback: (error?: Error, transactionId?: string) =>
             callback(error)
         })
 }
+
+const callback: Callback = (error, transactionId) => {
+    if (error == null && transactionId != null) {
+        console.log('Success!')
+    } else {
+        console.error('Fail', error)
+    }
+}
 // попробуем купить книгу
 buy(
     book,
-    (error?: Error, transactionId?: string) => {
-        if (error == null && transactionId != null) {
-            console.log('Success!')
-        } else {
-            console.error('Fail', error)
-        }
-    }
+    callback
 )

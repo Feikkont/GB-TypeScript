@@ -42,12 +42,13 @@ function buy(book, callback) {
         callback(error);
     });
 }
-// попробуем купить книгу
-buy(book, (error, transactionId) => {
+const callback = (error, transactionId) => {
     if (error == null && transactionId != null) {
         console.log('Success!');
     }
     else {
         console.error('Fail', error);
     }
-});
+};
+// попробуем купить книгу
+buy(book, callback);
